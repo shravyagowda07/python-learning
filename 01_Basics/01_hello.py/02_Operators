@@ -1,0 +1,69 @@
+# Arithmetic Operator
+a = 10
+b = 20
+print("Adition", a + b)
+print("Multiplication", a * b)
+print("Substraction", a - b)
+print("Division", a / b)
+print("Floor Division", a // b)
+print("Modulus", a % b)
+print("Exponenet", a ** b)
+
+# Comparision Operators
+x = 38
+y = 60
+print(x == y)
+print(x != y)
+print(x < y)
+print(x > y)
+print(x <= y)
+print(x >= y)
+
+# Assignment Operator
+p = 50
+p += 4
+print(p)
+p -= 7
+print(p)
+p *= 5
+print(p)
+p /= 10
+print(p)
+
+# Logical Operator
+q = True
+r = False
+print(q and r)
+print(q or r)
+print(not r)
+
+# Membership Operator
+fruits = ["apple", "banana", "mango"]
+print("apple" in fruits)
+print("mango" not in fruits)
+
+#Identity Operators
+z = [1,2,3]
+y = z
+x = [1,2,3]
+print(z is y)
+print(z is x)
+print(z == x)
+
+num1 = int(input("Enter first number:"))
+num2 = int(input("Enter second number:"))
+print("Sum is:", num1 + num2)
+print("Floor Division is: ",num1 // num2)
+print("Equal numbers:", num1 == num2)
+num1 += 2
+print("Number is:", num1)
+print(num1 and num2)
+print(num1 or num2)
+food = input("Enter your favourite foods: ")
+print("pizza" in food)
+print("Dosa" not in food)
+n1 = input("Enter numbers: ")
+n2 = n1
+n3 = n1
+print(n1 is n2)
+print(n2 is n3)
