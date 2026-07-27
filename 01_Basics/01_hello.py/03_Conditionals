@@ -1,0 +1,26 @@
+#Student Eligibility Checker
+
+name = input("Enter name: ")
+age = int(input("Enter age: "))
+marks = int(input("Enter marks: "))
+print(f"Hello {name}")
+if age >= 18:
+    print("Eligible by age")
+else:
+    print("Not eligible by age")
+if marks >= 90:
+    print("Grade:A")
+elif marks >= 75:
+    print("Grade:B")
+elif marks >= 60:
+    print("Grade:C")
+elif marks >= 40:
+    print("Grade:D")
+else:
+    print("Grade:Fail")
+
+if marks >= 40:
+    print("Congratulations! You passed.")
+elif marks < 40:
+    print("Better luck next time.")
+
