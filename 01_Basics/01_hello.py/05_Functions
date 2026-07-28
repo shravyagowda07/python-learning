@@ -1,0 +1,54 @@
+
+def greet():
+    print("Hello, Shravya!")
+greet()
+
+#Add two numbers
+def add(a, b):
+    return a + b
+print(add(3, 4))
+
+#find the largest number
+def find_largest(a, b):
+    if a > b:
+        return a
+    else:
+        return b
+result = find_largest(10, 28)
+print("The largest number is:", result)
+
+#check the number is even or odd
+def even_odd(num):
+    if num % 2 == 0:
+        return "Even"
+    else:
+        return "odd"
+print(even_odd(4))
+print(even_odd(5))
+
+#square of a number
+def calculate_square(n):
+    return n ** 2
+print(calculate_square(5))
+
+
+#factorial of a number
+def calculate_factorial(n):
+    if n < 0:
+        return "Factorial is not defined"
+    result = 1
+    for i in range(1, n + 1):
+        result *= i
+    return result
+print(calculate_factorial(5))
+
+#check number is prime
+def is_prime(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(n **0.5) + 1):
+        if n % i == 0:
+            return False
+        return True
+print(is_prime(7))
+print(is_prime(10))
