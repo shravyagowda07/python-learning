@@ -23,4 +23,3 @@ if marks >= 40:
     print("Congratulations! You passed.")
 elif marks < 40:
     print("Better luck next time.")
-

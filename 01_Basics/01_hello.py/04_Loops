@@ -1,0 +1,44 @@
+for i in range(1, 11):
+    print(i)
+for i in range(10, 0, -1):
+    print(i)
+for i in range(2, 51, 2):
+    print(i)
+for i in range(1, 51, 2):
+    print(i)
+
+for i in range(2, 3):
+    for j in range(1, 11):
+        print(f"{i}X{j}={i*j}")
+
+
+
+i = 1
+while i <= 4:
+    print("*" * i)
+    i = i + 1
+
+for i in range(1, 5):
+    for j in range(1, i + 1):
+        print(j, end="")
+    print()
+
+
+
+num = int(input("Enter the number: "))
+if num % 2 == 0:
+    print("The number is Even")
+else:
+    print("The number is Odd")
+
+if num > 0:
+    print("The number is Positive")
+elif num < 0:
+    print("The number is Negetive")
+else:
+    print("The number is Zero")
+
+if num % 5 == 0:
+    print("The number is divisible by 5")
+else:
+    print("The number is not divisible by 5")
