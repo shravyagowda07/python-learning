@@ -1,0 +1,49 @@
+#lenght of a string
+name = "shravya"
+print(len(name))
+#uppercase string
+print(name.upper())
+#lowercase string
+print(name.lower())
+#reverse string
+print(name[::-1])
+#palindrome
+is_palindrome = name == name[::-1]
+print(is_palindrome)
+
+#counting words in a string
+def count_words(sentence):
+    return len(sentence.split())
+sentence = "Count the number of words in a sentence."
+print("Number of words:", count_words(sentence))
+
+#counting vowels in a string
+def count_vowels(text):
+    vowels = "aeiouAEIOU"
+    return sum(1 for char in text if char in vowels)
+sentence = "Count the number of vowels."
+print("Number of vowels:", count_vowels(sentence))
+
+#replacing a substring in a string
+print(sentence.replace("easy", "simple"))
+
+#checking if a string contains a substring
+text = "hello"
+char = "e"
+if char in text:
+    print(f"'{char}'is prsent in the string.")
+else:
+    print(f"'{char}'is not prsent in the string.")
+
+#counting the frequency of each character in a string
+for char in text:
+    print(char)
+
+
+Name = input("Enter your name: ")
+print("Uppercase name is:",name.upper())
+print("Lowercase name is:",name.lower())
+print("Total number of characters:",len(name))
+print("First Character:",name[0])
+print("Last Character:",name[-1])
+print("Reversed name is:",name[::-1])
