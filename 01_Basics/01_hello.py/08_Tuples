@@ -1,0 +1,48 @@
+#create tuple of 5 fruits
+fruits = ("apple", "banana", "graphes", "pomogranet")
+print("Fruits:", fruits)
+
+#length of tuple
+print("Length of fruits:", len(fruits))
+
+#first and last elements
+print("First element:", fruits[0])
+print("last element:", fruits[-1])
+
+#check apple is present
+print("Is 'apple' is present?:", 'apple' in fruits)
+
+#find index of banana
+print("Index of banana:", fruits.index("banana"))
+
+#count how many times 10 appears
+numbers = (10, 20, 30, 10, 50, 10)
+print("How many times 10 appears?:", numbers.count(10))
+
+#convert tuple into list
+my_tuple = ("apple", "banana", "graphes", "pomogranet")
+my_list = list(my_tuple)
+print("converted list is:", my_list)
+
+My_list = ["apple", "banana", "graphes", "pomogranet"]
+My_tuple = tuple(My_list)
+print("Converted tuple is:", My_tuple)
+
+# Create a tuple containing 5 student names
+students = ("Rahul", "Priya", "Shravya", "Amit", "Neha")
+
+# Total number of students
+print("Total number of students:", len(students))
+
+# First student
+print("First student:", students[0])
+
+# Last student
+print("Last student:", students[-1])
+
+# Check whether "Shravya" exists in the tuple
+print("Is Shravya in the tuple?:", "Shravya" in students)
+
+
+
+
