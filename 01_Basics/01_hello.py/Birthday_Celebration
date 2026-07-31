@@ -1,0 +1,49 @@
+import time
+
+print("=" * 60)
+print("🎉 WELCOME TO SHRAVYA'S BIRTHDAY CELEBRATION 🎉")
+print("=" * 60)
+
+name = input("Enter your name: ")
+
+if name.lower() == "shravya":
+    print("\nHello,", name + "!")
+    time.sleep(1)
+
+    messages = [
+        "🎂 Happy Birthday, Shravya!",
+        "🌸 May this year bring you happiness.",
+        "💻 Keep learning Python every day.",
+        "📚 Complete Python, then master DSA.",
+        "🤖 Become an AI Engineer.",
+        "🌟 Build amazing projects.",
+        "💼 Get your dream internship.",
+        "🚀 Achieve a great software job.",
+        "❤️ Never stop believing in yourself."
+    ]
+
+    for message in messages:
+        print(message)
+        time.sleep(1)
+
+    print("\n🎁 Birthday Cake 🎁")
+    print("""
+             ,,,,,,,,,,
+            |:H:a:p:p:y:|
+          _|__________|__
+         |^^^^^^^^^^^^^^^^^|
+         |   BIRTHDAY 🎂   |
+         |     SHRAVYA     |
+         |_______________|
+             |  |  |  |
+          *******
+    """)
+
+    print("🎊 Have a wonderful birthday and an amazing year ahead! 🎊")
+
+else:
+    print(f"\nHello {name}!")
+    print("Today is a very special day.")
+
+
+
