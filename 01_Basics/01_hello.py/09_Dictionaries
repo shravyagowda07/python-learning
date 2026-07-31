@@ -1,0 +1,53 @@
+#create a dictionary of student
+student = {"name":"shravya", 
+           "age":19,
+           "branch":"CSE"}
+print(student)
+
+#print name and age of student
+print("Name:", student["name"])
+print("Age:", student["age"])
+
+#add a new key-value pair of the dictionary
+student["college"] = "KVG College"
+print(student["college"])
+
+#remove a key-value pair from the dictionary
+print(student.pop("branch"))
+
+
+#print all keys, values and key value pairs of the dictionary
+for key in student.keys():
+    print(key)
+for value in student.values():
+    print(value)
+for key, value in student.items():
+    print(f"{key}: {value}")
+
+#check if a key exists in the dictionary
+if "name" in student:
+    print("The key 'name' exists in the dictionary.")
+else:
+    print("The key 'name' does not exist")
+    
+
+# Dictionary with 5 subjects and marks
+marks = {
+    "Maths": 95,
+    "Python": 98,
+    "English": 88,
+    "Physics": 85,
+    "C Programming": 92,
+}
+
+# Calculations
+highest_mark = max(marks.values())
+lowest_mark = min(marks.values())
+average_mark = sum(marks.values()) / len(marks)
+highest_subject = max(marks, key=marks.get)
+
+# Output results
+print(f"Highest mark: {highest_mark}")
+print(f"Lowest mark: {lowest_mark}")
+print(f"Average mark: {average_mark}")
+print(f"Subject with the highest mark: {highest_subject}")
