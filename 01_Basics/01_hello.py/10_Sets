@@ -1,0 +1,46 @@
+#Studen subjects
+subjects = {"Python", "Math", "English"}
+subjects.add("AI")
+subjects.remove("English")
+print(subjects)
+if "Python" in subjects:
+    print("Python is available")
+
+
+#Union and Intersection
+set1 = {1,2,3,4}
+set2 = {3,4,5,6}
+print("Union:",set1.union(set2))
+print("Intersection:", set1.intersection(set2))
+print("Difference:", set1.difference(set2))
+
+
+#Remove Duplicate
+numbers = [1,2,2,3,4,4,5,5,6]
+unique = set(numbers)
+print(unique)
+
+
+#College Club Registration
+unique_students = []
+students = set()
+for i in range(5):
+    name = input("Enter name: ")
+    if name not in students:
+        students.add(name)
+        unique_students.append(name)
+    print("\nUnique Students:")
+    for name in students:
+        print(name)
+print(f"\nTotal = {len(students)}")
+
+
+#student Club
+python_club = {"John", "Amit", "Priya", "Rahul"}
+AI_club = {"Dora", "Krishna", "Ram", "Seeta"}
+print("Students in both clubs:", python_club & AI_club)     #Intersection &
+print("Students only in python clubs:", python_club - AI_club)
+print("Students only in AI clubs:", AI_club - python_club)    #Difference -
+print("All students:", python_club | AI_club)   #union is |
+
+
