@@ -1,0 +1,82 @@
+#syntax errors (missing colon, brackets etc)
+#Exception errors(runtime error)
+
+#Divide Two numbers
+try:
+    a = int(input("Enter first number: "))
+    b = int(input("Enter second number: "))
+    print("Answer:", a / b)
+except ZeroDivisionError:
+    print("Cannot divided by zero!")
+except ValueError:
+    print("Please enter valid numbers.")
+
+#Age Checker
+try:
+    age = int(input("Enter your age: "))
+    if age >= 18:
+        print("Eligible to vote")
+    else:
+        print("Not elgible to vote")
+except ValueError:
+    print("Please enter only numbers.")
+
+
+#Multiple Exception
+try:
+    number = int(input("Enter a number: "))
+    print(100 / number)
+except ValueError:
+    print("Invalid number.")
+except ZeroDivisionError:
+    print("Zero is not allowed.")
+finally:
+    print("Program Finished.")
+
+
+#ATM simulation
+balance = 5000
+user_input = input("Enter withdrawl ammount: ")
+try:
+    amount = float(user_input)
+    if amount > balance:
+        print("Insufficient Balance")
+    elif amount <= 0:
+        print("Error: Please enter a valid positive amount.")
+    else:
+        balance -= amount
+        print(f"Transaction succesful. Remaining balance:{balance}")
+except ValueError:
+    print("Error: Invalid input. Please enter numbers only.")
+
+def calculator():
+    try:
+        # Get inputs from user
+        num1 = float(input("Enter first number: "))
+        operator = input("Enter operator (+, -, *, /): ").strip()
+        num2 = float(input("Enter second number: "))
+
+        # Perform operation based on the operator
+        if operator == "+":
+            result = num1 + num2
+        elif operator == "-":
+            result = num1 - num2
+        elif operator == "*":
+            result = num1 * num2
+        elif operator == "/":
+            if num2 == 0:
+                print("Error: Division by zero is not allowed.")
+                return
+            result = num1 / num2
+        else:
+            print("Error: Invalid operator entered.")
+            return
+
+        print(f"Result: {result}")
+
+    except ValueError:
+        print("Error: Invalid input. Please enter numerical values.")
+
+# Run the calculator
+calculator()
+
