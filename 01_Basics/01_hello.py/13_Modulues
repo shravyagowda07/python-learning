@@ -1,0 +1,74 @@
+#Import math module
+import math
+print("Square root:", math.sqrt(64))
+print("Power:", math.pow(2, 5))
+print("Value of PI:", math.pi)
+print("Factorial:", math.factorial(5))
+
+
+#Import Random module
+import random
+print(random.randint(1, 100))
+print(random.choice(["Python", "AI", "DSA", "Github"]))
+
+
+#Guess the number game
+import random
+secret_number = random.randint(1, 10)
+user_guess = int(input("Guess the number between 1 to 10:"))
+if user_guess == secret_number:
+    print("Congratulations!")
+else:
+    print(f"Wrong guess. \nThe corrct number was {secret_number}")
+
+
+#Dice roller
+import random
+dice = random.randint(1, 6)
+guess = int(input("Guess the dice number (1-6):"))
+print("Your guess:", guess)
+print("Dice rolled:", dice)
+if guess == dice:
+    print("Congratulations! You guessed correctly.")
+else:
+    print("You lose.")
+
+#Lucky Student Picker
+import random
+students = random.choice(["Shravya", "Rahul", "Priya", "Amit", "Neha"])
+print(f"Today's lucky student is {students}")
+
+
+#Rock Paper Scissor Game
+import random
+
+def play_game():
+    choices = ["Rock", "Paper", "Scissors"]
+    
+    # Get user input
+    user_choice = input("Enter your choice (Rock, Paper, Scissors): ").strip().capitalize()
+    
+    # Validate user choice
+    if user_choice not in choices:
+        print("Invalid choice. Please choose Rock, Paper, or Scissors.")
+        return
+
+    # Computer randomly picks
+    computer_choice = random.choice(choices)
+
+    # Display choices
+    print(f"\nYou: {user_choice}")
+    print(f"Computer: {computer_choice}\n")
+
+    # Determine winner
+    if user_choice == computer_choice:
+        print("It's a tie!")
+    elif (user_choice == "Rock" and computer_choice == "Scissors") or \
+         (user_choice == "Paper" and computer_choice == "Rock") or \
+         (user_choice == "Scissors" and computer_choice == "Paper"):
+        print("You Win!")
+    else:
+        print("Computer Wins!")
+play_game()
+
+ 
