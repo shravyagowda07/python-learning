@@ -1,0 +1,46 @@
+
+def get_grade(marks):
+    if marks >= 90:
+        return 'A'
+    elif marks >= 80:
+        return 'B'
+    elif marks >= 70:
+        return 'C'
+    elif marks >= 60:
+        return 'D'
+    else:
+        return 'F'
+
+# Dictionary to store student names and marks
+students = {}
+
+# Example input loop (for 2 students as shown in example)
+n = int(input("Enter number of students: "))
+for _ in range(n):
+    name = input("Enter student name: ")
+    marks = float(input("Enter marks: "))
+    students[name] = marks
+
+print("\n----- Student Report -----")
+for name, marks in students.items():
+    print(f"{name} : {int(marks) if marks.is_integer() else marks} ({get_grade(marks)})")
+
+# Calculations
+marks_list = list(students.values())
+highest = max(marks_list)
+lowest = min(marks_list)
+average = sum(marks_list) / len(marks_list)
+
+print(f"\nHighest Marks: {int(highest) if highest.is_integer() else highest}")
+print(f"Lowest Marks: {int(lowest) if lowest.is_integer() else lowest}")
+print(f"Average Marks: {average:.1f}\n")
+
+#search name 
+search_name = input("Enter a student name to search: ")
+
+if search_name in students:
+    score = students[search_name]
+    score_display = int(score) if score.is_integer() else score
+    print(f"\n{search_name} scored {score_display} marks.")
+else:
+    print("\nStudent not found.")
