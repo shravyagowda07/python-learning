@@ -20,6 +20,23 @@ This repository contains my daily Python practice, mini projects, and coding jou
 •⁠  ⁠✅ Sets
 •⁠  ⁠✅ Exception Handling
 •⁠  ⁠✅ Modules
+##  OOP Progress
+•⁠  ⁠✅ Classes and Objects
+•⁠  ⁠✅ ⁠ __init__() ⁠ Constructor
+•⁠  ⁠✅ ⁠ self ⁠
+•⁠  ⁠✅ Attributes
+•⁠  ⁠✅ Methods
+•⁠  ⁠🔄 OOP Practice Programs
+
+## 📅 Daily Coding Journey
+
+| Day | Topic |
+|---|---|
+| Day 11 | File Handling |
+| Day 12 | Exception Handling |
+| Day 13 | Modules |
+| Day 14 | Object-Oriented Programming |
+| Day 15 | OOP Practice |
 
 ## Mini Projects
 
