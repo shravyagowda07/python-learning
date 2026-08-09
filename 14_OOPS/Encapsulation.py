@@ -1,6 +1,6 @@
 #Encapsulation in Python
 class BankAccount:
-    def __init__(self,initial_balance,):
+    def __init__(self,initial_balance):
         self.balance = initial_balance
     
     def deposite(self, amount):
