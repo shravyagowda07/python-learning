@@ -1,0 +1,126 @@
+
+def print_menu():
+    print("=====SHOPPING CART MENU=====")
+    print("-" * 25)
+    print("1. Add Product")
+    print("2. View Cart")
+    print("3. Remove Product")
+    print("4. Calculate Total")
+    print("5. Exit")
+    print("-" * 25)
+
+def add_product(cart):
+    name = input("Enter product name: ").strip().title()
+    if not name:
+        print("Product name cannot be empty!")
+        return
+
+    try:
+        price = float(input("Enter price: ₹"))
+        quantity = int(input("Enter quantity: "))
+        
+        if price <= 0 or quantity <= 0:
+            print("Price and quantity must be greater than zero.")
+            return
+
+        # Check if product already exists in cart, update quantity if it does
+        for item in cart:
+            if item['name'] == name:
+                item['quantity'] += quantity
+                item['price'] = price  # Update to latest price
+                print(f"Updated {name} quantity to {item['quantity']}!")
+                return
+
+        cart.append({
+            'name': name,
+            'price': price,
+            'quantity': quantity
+        })
+        print(f"{name} added successfully!")
+
+    except ValueError:
+        print("Invalid input! Price and quantity must be numbers.")
+
+def view_cart(cart):
+    if not cart:
+        print("\nYour cart is currently empty.")
+        return 0
+
+
+    print("----------YOUR CART----------")
+
+    print(f"{'Product':<15} {'Price':<10} {'Quantity':<10} {'Total':<10}")
+    print("-" * 45)
+
+    subtotal = 0
+    for item in cart:
+        item_total = item['price'] * item['quantity']
+        subtotal += item_total
+        print(f"{item['name']:<15} ₹{item['price']:<9.2f} {item['quantity']:<10} ₹{item_total:<9.2f}")
+
+    print("-" * 45)
+    print(f"Cart Subtotal: ₹{subtotal:.2f}")
+    return subtotal
+
+def remove_product(cart):
+    if not cart:
+        print("\nYour cart is empty. Nothing to remove.")
+        return
+
+    name = input("\nEnter product to remove: ").strip().title()
+    for item in cart:
+        if item['name'] == name:
+            cart.remove(item)
+            print(f"{name} removed successfully!")
+            return
+            
+    print(f"Product '{name}' not found in cart.")
+
+def calculate_total(cart):
+    if not cart:
+        print("\nYour cart is empty.")
+        return
+
+    subtotal = sum(item['price'] * item['quantity'] for item in cart)
+
+    # 10% Discount if subtotal is over ₹100
+    discount = subtotal * 0.10 if subtotal >= 100 else 0.0
+    discounted_amount = subtotal - discount
+
+    # 18% GST calculation
+    gst = discounted_amount * 0.18
+    final_total = discounted_amount + gst
+
+    print("\n" + "=" * 30)
+    print("       BILL RECEIPT       ")
+    print("=" * 30)
+    print(f"Subtotal:       ₹{subtotal:>8.2f}")
+    print(f"Discount (10%): -₹{discount:>8.2f}")
+    print(f"GST (18%):      +₹{gst:>8.2f}")
+    print("-" * 30)
+    print(f"Final Total:    ₹{final_total:>8.2f}")
+    print("=" * 30)
+
+def main():
+    cart = []
+    
+    while True:
+        print_menu()
+        choice = input("Enter your choice (1-5): ").strip()
+
+        if choice == '1':
+            add_product(cart)
+        elif choice == '2':
+            view_cart(cart)
+        elif choice == '3':
+            remove_product(cart)
+        elif choice == '4':
+            calculate_total(cart)
+        elif choice == '5':
+            print("\nThank you for shopping! 😊")
+            break
+        else:
+            print("Invalid choice. Please select an option between 1 and 5.")
+
+if __name__ == "__main__":
+    main()
