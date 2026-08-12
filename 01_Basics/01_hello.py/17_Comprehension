@@ -1,0 +1,30 @@
+#squares from 1 to 10
+numbers = range(1, 11)
+squares = {x: x * x for x in numbers}
+print(squares)
+
+#Even numbers
+number = range(1,11)
+even_squares = {x: x * x for x in number if x % 2 == 0}
+print(even_squares)
+
+#student dictionary
+students = {
+    "shravya":90,
+    "Kavya":38,
+    "Bhavya":49,
+    "Chandana":80,
+    "Bhagya":86
+}
+passed_students = {name: score for name, score in students.items() if score >= 50}
+print(passed_students)
+
+#Uppercase words
+words = ["python","AI","programming","code","C"]
+filtered_words = [word for word in words if len(word) > 4]
+print(filtered_words)
+
+#Dictionary Comprehension
+n1 = [10,14,23,55,57,86]
+result = {num: ("Even" if num % 2 == 0 else "odd") for num in n1}
+print(result)

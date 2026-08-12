@@ -17,7 +17,6 @@ print(fruits)
 sorted_fruits = sorted(fruits)
 print(sorted_fruits)
 
-#reverse the list
 print(fruits.reverse())
 
 #length of the list
