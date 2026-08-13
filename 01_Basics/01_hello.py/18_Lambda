@@ -1,0 +1,48 @@
+#lambda functions
+#lambda with one argument
+def double(x):
+    return x * 2
+double = lambda x: x * 2
+print(double(5))
+
+#lambda with multiple argument
+def add(a,b,c):
+    return a + b + c
+add = lambda a, b, c: a + b + c
+print(add(10,20,30))
+
+#lambda with map()
+marks = ["1","2","3","4","5"]
+total = list(map(int,marks))
+print(total)
+
+n1 = [12,34,56,78]
+total = list(map(lambda x: x * 2, n1))
+print("Lambda with Map:", total)
+
+names = ["shravya", "kavya", "bhavya"]
+result = list(map(lambda x: x.upper(), names))
+print(result)
+
+#lambda with filter()
+number = [12,34,55,43,53,23,56]
+def even(x):
+    return x % 2 == 0
+evens = list(filter(even, number))
+print("Even numbers:", evens)
+
+
+number = [12,34,55,43,53,23,56]
+evens = list(filter(lambda x: x % 2 == 0, number))
+print("Even numbers:", evens)
+
+#lambda with sorted()
+city = ['manglore','udupi','puttur','sulia','polya']
+sort = sorted(city, key=lambda x: len(x),reverse=True)
+print("sorted lentgh:",sort)
+
+#lambda with reduce()
+numbers = [1,2,3,4,5,6]
+from functools import reduce
+a = reduce(lambda a, b: a + b, numbers)
+print("Reduced number:",a)
