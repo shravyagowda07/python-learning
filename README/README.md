@@ -20,6 +20,8 @@ This repository contains my daily Python practice, mini projects, and coding jou
 •⁠  ⁠✅ Sets
 •⁠  ⁠✅ Exception Handling
 •⁠  ⁠✅ Modules
+•⁠  ⁠✅ Comprehensions
+•⁠  ⁠✅ Lambda
 ##  OOP Progress
 •⁠  ⁠✅ Classes and Objects
 •⁠  ⁠✅ ⁠ __init__() ⁠ Constructor
@@ -27,6 +29,7 @@ This repository contains my daily Python practice, mini projects, and coding jou
 •⁠  ⁠✅ Attributes
 •⁠  ⁠✅ Methods
 •⁠  ⁠🔄 OOP Practice Programs
+
 
 ## 📅 Daily Coding Journey
 
@@ -42,6 +45,7 @@ This repository contains my daily Python practice, mini projects, and coding jou
 
 •⁠  ⁠🎂 Birthday Celebration Program
 •⁠  ⁠🎓 Student Grade Manager
+•⁠  ⁠🛒 Shopping Cart Program
 
 ## Goals
 
