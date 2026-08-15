@@ -1,0 +1,98 @@
+def greet():
+    print("Hello")
+message = greet
+message()
+
+
+def hello():
+    print("Hello")
+def bye():
+    print("Bye")
+functions = [hello,bye]
+for function in functions:
+    function()
+
+
+def outer():
+    print("Hi I am shravya")
+    def inner():
+        print("Hello from inner function")
+    inner()
+outer()
+
+
+def greet():
+    print("Hello")
+def execute(function):
+    function()
+execute(greet)
+
+
+def add(*args):
+    print(args)
+add(10,20,30)
+
+def add(*args):
+    return sum(args)
+print(add(10,20))
+print(add(10,20,30,40))
+
+
+def student(**kwargs):
+    print(kwargs)
+student(name = "Shravya", age = 19, branch = "CSE")
+
+def decorator(function):
+    def wrapper():
+        print("Before function")
+        function()
+        print("After function")
+    return wrapper
+
+new_greet = decorator(greet)
+new_greet()
+
+
+def show_activity(function):
+    def wrapper():
+        print("Function started")
+        function()
+        print("Function finished")
+    return wrapper
+@show_activity
+def study():
+    print("I am studeying Python")
+study()
+
+#calculation decorator
+def log_calculation(function):
+    def wrapper(*args,**kwargs):
+        print("Calculation Started")
+        return function(*args,**kwargs)
+    return wrapper
+
+@log_calculation
+def add(a, b):
+    return a + b
+print("Result:", add(5,3))
+
+
+#login required decorator
+from functools import wraps
+current_user = {"username": "Alice", "is_logged_in": True}
+def login_required(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        if current_user.get("is_logged_in"):
+            return func(*args, **kwargs)
+        else:
+            print("Access Denied: You must be logged in to perform this action.")
+            return None
+    return wrapper
+
+@login_required
+def view_dashboard():
+    print(f"Welcome to your dashboard, {current_user['username']}!")
+view_dashboard()
+current_user["is_logged_in"] = False
+view_dashboard()
