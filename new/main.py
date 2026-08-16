@@ -1,4 +1,4 @@
-file = open("notes.txt", "r")
+file = open("new/notes.txt", "r")
 contents = file.read()
 print(contents)
 file.close()
@@ -16,19 +16,15 @@ with open("student.txt", "r") as file:
     print(data)
 
 
-
 with open("student.txt", "a") as file:
     file.write("Learning: File Handling\n")
     print("New data added.")
-
 
 
 with open("student.txt", "r") as file:
     text = file.read()
 words = text.split()
 print("Total words:", len(words))
-
-
 
 
 def notes_manager():
@@ -76,28 +72,3 @@ with open("daily_progress.txt", "a") as file:
     print(f"{topic}\n")
     print(f"{time}\n")
     print(f"{learn}\n")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
