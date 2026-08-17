@@ -22,6 +22,10 @@ This repository contains my daily Python practice, mini projects, and coding jou
 •⁠  ⁠✅ Modules
 •⁠  ⁠✅ Comprehensions
 •⁠  ⁠✅ Lambda
+•⁠  ⁠✅ Generators
+•⁠  ⁠✅ Decorators
+•⁠  ⁠✅ Context Manager
+
 ##  OOP Progress
 •⁠  ⁠✅ Classes and Objects
 •⁠  ⁠✅ ⁠ __init__() ⁠ Constructor
@@ -46,6 +50,8 @@ This repository contains my daily Python practice, mini projects, and coding jou
 •⁠  ⁠🎂 Birthday Celebration Program
 •⁠  ⁠🎓 Student Grade Manager
 •⁠  ⁠🛒 Shopping Cart Program
+•⁠  ⁠🇮🇳 Python Independence Day Quiz
+•⁠  ⁠🎓 Student Performance Manager
 
 ## Goals
 
