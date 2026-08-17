@@ -1,0 +1,200 @@
+def print_menu():
+    print("\n" + "=" * 40)
+    print("       STUDENT PERFORMANCE MANAGER")
+    print("=" * 40)
+    print("1. Add Student")
+    print("2. View All Students")
+    print("3. Search Student")
+    print("4. Show Top Student")
+    print("5. Exit")
+    print("=" * 40)
+
+
+def add_student(students):
+    name = input("Enter your name: ").strip().title()
+
+    if not name:
+        print("Please enter your name.")
+        return
+
+    branch = input("Enter your branch: ").strip().upper()
+
+    if not branch:
+        print("Please enter your branch.")
+        return
+
+    try:
+        python_marks = int(input("Enter Python marks: "))
+        dsa_marks = int(input("Enter DSA marks: "))
+        maths_marks = int(input("Enter Maths marks: "))
+
+        # Validate marks
+        if not 0 <= python_marks <= 100:
+            print("Python marks must be between 0 and 100.")
+            return
+
+        if not 0 <= dsa_marks <= 100:
+            print("DSA marks must be between 0 and 100.")
+            return
+
+        if not 0 <= maths_marks <= 100:
+            print("Maths marks must be between 0 and 100.")
+            return
+
+        # Check if student already exists
+        for student in students:
+            if student["name"] == name:
+                student["branch"] = branch
+                student["python_marks"] = python_marks
+                student["dsa_marks"] = dsa_marks
+                student["maths_marks"] = maths_marks
+
+                print(f"\n{name}'s details updated successfully!")
+                return
+
+        # Add new student
+        student = {
+            "name": name,
+            "branch": branch,
+            "python_marks": python_marks,
+            "dsa_marks": dsa_marks,
+            "maths_marks": maths_marks
+        }
+
+        students.append(student)
+
+        print(f"\n{name} added successfully!")
+
+    except ValueError:
+        print("Invalid input! Please enter numbers for marks.")
+
+
+def view_all_students(students):
+    if not students:
+        print("\nNo students available.")
+        print("Please add a student first.")
+        return
+
+    print("\n" + "=" * 65)
+    print("                    STUDENT DETAILS")
+    print("=" * 65)
+
+    print(
+        f"{'Name':<15}"
+        f"{'Branch':<10}"
+        f"{'Python':<10}"
+        f"{'DSA':<10}"
+        f"{'Maths':<10}"
+    )
+
+    print("-" * 65)
+
+    for student in students:
+        print(
+            f"{student['name']:<15}"
+            f"{student['branch']:<10}"
+            f"{student['python_marks']:<10}"
+            f"{student['dsa_marks']:<10}"
+            f"{student['maths_marks']:<10}"
+        )
+
+    print("=" * 65)
+
+
+def search_student(students):
+    if not students:
+        print("\nNo students available.")
+        return
+
+    search_name = input("Enter student name to search: ").strip().title()
+
+    found = False
+
+    for student in students:
+        if student["name"] == search_name:
+            print("\n" + "=" * 40)
+            print("           STUDENT FOUND")
+            print("=" * 40)
+            print(f"Name   : {student['name']}")
+            print(f"Branch : {student['branch']}")
+            print(f"Python : {student['python_marks']}")
+            print(f"DSA    : {student['dsa_marks']}")
+            print(f"Maths  : {student['maths_marks']}")
+            print("=" * 40)
+
+            found = True
+            break
+
+    if not found:
+        print("\nStudent not found.")
+
+
+def show_top_student(students):
+    if not students:
+        print("\nNo students available.")
+        return
+
+    top_student = students[0]
+
+    top_total = (
+        top_student["python_marks"]
+        + top_student["dsa_marks"]
+        + top_student["maths_marks"]
+    )
+
+    for student in students:
+        total = (
+            student["python_marks"]
+            + student["dsa_marks"]
+            + student["maths_marks"]
+        )
+
+        if total > top_total:
+            top_student = student
+            top_total = total
+
+    print("\n" + "=" * 40)
+    print("              TOP STUDENT")
+    print("=" * 40)
+    print(f"Name   : {top_student['name']}")
+    print(f"Branch : {top_student['branch']}")
+    print(f"Python : {top_student['python_marks']}")
+    print(f"DSA    : {top_student['dsa_marks']}")
+    print(f"Maths  : {top_student['maths_marks']}")
+    print(f"Total  : {top_total} / 300")
+    print("=" * 40)
+
+
+def main():
+    # This list stores all students
+    students = []
+
+    while True:
+        print_menu()
+
+        choice = input("Enter your choice (1-5): ").strip()
+
+        if choice == "1":
+            add_student(students)
+
+        elif choice == "2":
+            view_all_students(students)
+
+        elif choice == "3":
+            search_student(students)
+
+        elif choice == "4":
+            show_top_student(students)
+
+        elif choice == "5":
+            print("\nExiting the program.")
+            print("Thank you for using Student Performance Manager!")
+            break
+
+        else:
+            print("\nInvalid choice!")
+            print("Please select a number from 1 to 5.")
+
+
+if __name__== "__main__":
+    main()
