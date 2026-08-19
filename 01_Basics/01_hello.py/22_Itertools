@@ -1,0 +1,67 @@
+#Using itertools. count the numbers continuously
+from itertools import count
+numbers = count(10)
+print(next(numbers))
+print(next(numbers))
+print(next(numbers))
+print(next(numbers))
+print(next(numbers))
+
+
+#cycle() repeatedly goesthrough the same values
+from itertools import cycle
+colors = cycle(["red","green","blue"])
+print(next(colors))
+print(next(colors))
+print(next(colors))
+print(next(colors))
+print(next(colors))
+
+#repeat() repeats the same value
+from itertools import repeat
+numbers = repeat(10,4)
+#name = repeat("Python",3)
+for item in numbers:
+    print(item)
+
+
+#chain() combines multiple iterables into one iterator
+from itertools import chain
+python_students = ['a','b','c']
+c_students = ['d','e']
+students = chain(python_students,c_students)
+print(list(students))
+
+
+#combinations() selects the groups where order doesn't matter
+from itertools import combinations
+students = ["A","B","C"]
+groups = combinations(students, 2)
+print(list(groups))
+
+
+#permutations() also creates groups, but order matters
+from itertools import permutations
+students = ["X","Y","Z"]
+arrangments = permutations(students,2)
+print(list(arrangments))
+
+#Student Team Generator
+from itertools import combinations
+print("=" * 40)
+print("STUDENT TEAM GENERATOR")
+print("=" * 40)
+students = []
+n = int(input("How many Students?"))
+for i in range(n):
+    name = input(f"Enter student {i + 1} name: ").strip()
+    students.append(name)
+
+print("\nStudents:")
+for student in students:
+    print("-", student)
+
+teams = combinations(students,3)
+print("\nPossible 3-student Team:")
+for team in teams:
+    print(f"{team[0]} + {team[1]} + {team[2]}")
