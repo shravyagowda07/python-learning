@@ -1,0 +1,71 @@
+#add all numbers using reduce()
+from functools import reduce
+numbers = [100,250,320,450]
+total = reduce(lambda a, b: a + b, numbers)
+print("Total:", total)
+
+
+#find power using partial()
+from functools import partial
+def power(base, exponent):
+    return base ** exponent
+print("Power:",power(2, 3))
+print("Power:",power(5, 3))
+
+#find square using partial()
+from functools import partial
+def power(base, exponent):
+    return base ** exponent
+square = partial(power, exponent=2)
+print("Square:",square(2))
+print("Square:",square(5))
+print("Square:",square(8))
+
+
+#lru_cache() is used to remember previous functins result
+from functools import lru_cache
+@lru_cache
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n - 1)+fibonacci(n - 2)
+print("Fibonacci:",fibonacci(10))
+
+
+#wraps() is used when creating decorators
+from functools import wraps
+def my_decorator(func):
+    @wraps(func)
+    def wrapper():
+        print("Before function")
+        func()
+    return wrapper
+@my_decorator
+def greet():
+    """This is the greet function."""
+    print("Hello")
+greet()
+print(greet.__name__)
+print(greet.__doc__)
+
+
+#Expense Calculator
+from functools import reduce, partial
+print("==== EXPENSE CALCULATOR ====")
+expenses = []
+n = int(input("How many expenses?"))
+for i in range(n):
+    name = float(input(f"Enter expense {i + 1}: "))
+    expenses.append(name)
+print("\nExpenses:")
+for expense in expenses:
+    print("-",expense)
+
+total = reduce(lambda a, b: a + b, expenses)
+print("Total expense:", total)
+
+def calculate_gst(amount,rate):
+    return amount + (amount * rate)
+gst_18 = partial(calculate_gst, rate=0.18)
+final_amount = gst_18(total)
+print("Amount after GST: ",final_amount)
