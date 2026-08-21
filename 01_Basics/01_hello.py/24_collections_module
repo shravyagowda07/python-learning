@@ -1,0 +1,96 @@
+#counter() - count items
+from collections import Counter
+marks = ['A','B','A','C','A','B','C']
+result = Counter(marks)
+print(result)
+
+from collections import Counter
+grades = ['A','B','A','C','A','B','C']
+grade_count = Counter(grades)
+print("Grade A:",grade_count['A'])
+print("Grade B:", grade_count['B'])
+print("Grade C:", grade_count['C'])
+
+
+#defualtdict() - Automatic defualt values
+from collections import defaultdict
+marks = defaultdict(int)
+marks["python"] += 10
+marks["python"] += 20
+marks["DSA"] += 30
+marks["DSA"] += 10
+print(marks)
+
+
+from collections import defaultdict
+students = [
+    ("Shravya", "CSE"),
+    ("Kavya", "ECE"),
+    ("Bhavya", "CSE"),
+    ("Nisha", "ECE"),
+    ("Ramya", "ISE")
+]
+groups = defaultdict(list)
+for name, branch in students:
+    groups[branch].append(name)
+print(groups)
+
+
+#deque() - Add/remember from both ends
+from collections import deque
+students = deque(["Shravya","Bhavya","Ramya"])
+students.appendleft("Kavya")
+students.append("Dhanya")
+students.popleft()
+print(students) 
+
+
+#nametuple() - Simple Structured records
+from collections import namedtuple
+Student = namedtuple("Student", ["name", "branch", "marks"])
+student = Student("Shravya","CSE",90)
+print(student.name)
+print(student.branch)
+print(student.marks)
+
+
+#Student Marks Analyzer 
+from collections import Counter, deque, namedtuple, defaultdict
+
+students = []
+
+n = int(input("How many students? "))
+
+Student = namedtuple("Student", ["name", "grade"])
+
+for i in range(n):
+    name = input(f"Enter student name {i + 1}: ").strip().title()
+    grade = input(f"Enter grade for {name}: ").strip().upper()
+
+    student = Student(name, grade)
+    students.append(student)
+
+# Counter
+grades = [student.grade for student in students]
+grade_count = Counter(grades)
+
+print("\nGrade Count:")
+print(grade_count)
+
+# deque
+student_queue = deque(students)
+
+print("\nStudent Queue:")
+for student in student_queue:
+    print("-", student.name, ":", student.grade)
+
+# defaultdict
+groups = defaultdict(list)
+
+for student in students:
+    groups[student.grade].append(student.name)
+
+print("\nStudents Grouped By Grade:")
+
+for grade, names in groups.items():
+    print(grade, ":", ", ".join(names))
