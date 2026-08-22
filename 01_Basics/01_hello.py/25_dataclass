@@ -1,0 +1,103 @@
+#dataclass
+from dataclasses import dataclass
+@dataclass
+class Student:
+    name: str
+    branch: str
+    marks: int
+student = Student("Shravya", "CSE", 90)
+print(student)
+
+
+from dataclasses import dataclass
+@dataclass
+class Student:
+    name: str
+    branch: str = "CSE"
+    marks: int = 0
+student = Student("Shravya")
+print(student)
+
+
+from dataclasses import dataclass
+@dataclass
+class Student:
+    name: str
+    branch: str
+    marks: int
+student1 = Student("Shravya", "CSE", 90)
+student2 = Student("Kavya", "ISE", 90)
+student3 = Student("Ramya", "ECE", 90)
+print(student1)
+print(student2)
+print(student3)
+
+
+from dataclasses import dataclass
+@dataclass
+class Students:
+    naem: str
+    branch: str
+    marks: int
+students1 = Students("Shravya", "CSE", 88)
+print(students1.marks)
+students1.marks = 95
+print(students1.branch)
+students1.branch = "AIML"
+print(students1.marks)
+print(students1.branch)
+
+
+from dataclasses import dataclass
+@dataclass
+class Student:
+    name: str
+    marks: int
+    def __post_init__(self):
+        if self.marks < 0 or self.marks > 100:
+            raise
+ValueError("Marks must be between 0 and 100")
+student = Student("Shravya", 56)
+print(student)
+
+
+#student record manager
+from dataclasses import dataclass
+
+@dataclass
+class Student:
+    name: str
+    branch: str
+    marks: float
+
+def student_record_manager():
+    num_students = int(input("How many students? "))
+    students = []
+
+    for i in range(num_students):
+        print(f"\nEnter details for Student {i + 1}:")
+        name = input("Name: ")
+        branch = input("Branch: ")
+        marks = float(input("Marks: "))
+        
+        student = Student(name=name, branch=branch, marks=marks)
+        students.append(student)
+
+    if not students:
+        print("\nNo student records added.")
+        return
+
+    # Display all students
+    print("\n--- Student Records ---")
+    for s in students:
+        print(f"Name: {s.name} | Branch: {s.branch} | Marks: {s.marks}")
+
+    # highest marks
+    top_student = max(students, key=lambda s: s.marks)
+    print(f"\nHighest Marks: {top_student.name} with {top_student.marks} marks")
+
+    # average marks
+    average_marks = sum(s.marks for s in students) / len(students)
+    print(f"Average Marks: {average_marks:.2f}")
+if __name__ == "__main__":
+    student_record_manager()
