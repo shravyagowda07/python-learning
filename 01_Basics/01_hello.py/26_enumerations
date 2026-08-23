@@ -1,0 +1,91 @@
+#enum functions
+from enum import Enum
+class Result(Enum):
+    PASS = 1
+    FAIL = 2
+print(Result.PASS.name)
+print(Result.FAIL.value)
+
+
+from enum import Enum
+class Result(Enum):
+    result = Result.PASS
+    if result == Result.PASS:
+        print("Student Passed")
+
+
+
+
+from enum import Enum
+class Result(Enum):
+    PASS = 1
+    FAIL = 2
+choice = int(input("Enter result(1-PASS, 2-FAIL): "))
+result = Result(choice)
+print("Result:", result.name)
+
+
+from enum import Enum
+class Result(Enum):
+    PASS = 1
+    FAIL = 2
+name = input("Enter student name: ").strip().title()
+marks = int(input("Enter marks: "))
+if marks >= 40:
+    result = Result.PASS
+else:
+    result = Result.FAIL
+print("\n====STUDENT RESULT====")
+print("Nmae: ", name)
+print("Marks: ", marks)
+print("Result: ", result.name)
+
+
+from dataclasses import dataclass
+from enum import Enum
+class Result(Enum):
+    PASS = "PASS"
+    FAIL = "FAIL"
+@dataclass
+class Student:
+    name: str
+    marks: int
+    result: Result
+name = input("Enter name: ").strip().title()
+marks = int(input("Enter marks: "))
+if marks >= 45:
+    result = Result.PASS
+else:
+    result = Result.FAIL
+student = Student(name, marks, result)
+print("\n===STUDENT RESULT===")
+print("Nmae: ", student.name)
+print("Marks: ", student.marks)
+print("Result: ", student.result.value)
+
+
+
+from enum import Enum
+class Result(Enum):
+    PASS = "PASS"
+    FAIL = "FAIL"
+num_students = int(input("How many students?"))
+students = []
+for i in range(num_students):
+    name = input(f"Enter name {i + 1}:").strip().title()
+    marks = int(input("Enter marks: "))
+
+    if marks >= 45:
+        result = Result.PASS
+    else:
+        result = Result.FAIL
+    student = (name, marks, result)
+    students.append(student)
+
+print("\n====RESULT====")
+for student in students:
+    name, marks, result = student
+    print(f"{name} - {marks} - {result.value}")
+
+
+    
