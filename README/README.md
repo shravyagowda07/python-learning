@@ -24,7 +24,14 @@ This repository contains my daily Python practice, mini projects, and coding jou
 •⁠  ⁠✅ Lambda
 •⁠  ⁠✅ Generators
 •⁠  ⁠✅ Decorators
-•⁠  ⁠✅ Context Manager
+•⁠  ⁠✅ Iterators
+•⁠  ⁠✅ Itertools
+•⁠  ⁠✅ Functools
+•⁠  ⁠✅ Collection Module
+•⁠  ⁠✅ Dataclass
+•⁠  ⁠✅ Enumerations
+•⁠  ⁠✅ JSON in Python
+
 
 ##  OOP Progress
 •⁠  ⁠✅ Classes and Objects
