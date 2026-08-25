@@ -1,0 +1,71 @@
+#json.dumps() - convert python object to json string
+import json
+student = {
+    "name": "Shravya",
+    "branch": "CSE",
+    "marks":90
+}
+data = json.dumps(student)
+print(data)
+print(type(data))
+
+
+#json.loads() - convert json string to python object
+import json
+data = '{"name": "shravya","marks": 99}'
+student = json.loads(data)
+print(student)
+print(type(student))
+print(student["name"])
+
+
+#json.dump() - write python object to json file
+import json
+student = {
+    "name": "Shravya",
+    "branch": "CSE",
+    "marks": 99
+}
+with open("student.json","w") as file:
+    json.dump(student, file, indent = 4)
+
+
+#json.load() - read json file and convert to python object
+import json
+with open("student.json", "r") as file:
+    student = json.load(file)
+print(student)
+print(student["name"])
+
+
+#json file manager - add multiple students and find top student
+import json
+n = int(input("How many students? "))
+students = []
+for i in range(n):
+    print(f"==== STUDENT JSON MANAGER ====")
+    name = input(f"Enter name: ")
+    branch = input(f"Enter branch: ")
+    marks = int(input("Enter marks: "))
+    students.append({
+        "name": name,
+        "branch": branch,
+        "marks": marks
+    })
+with open("students.json", "w") as file:
+    json.dump(students, file, indent = 4)
+
+print("Student added succesfully!")
+with open("students.json", "r") as file:
+    loaded_students = json.load(file)
+
+print("===STUDENTS===")
+for student in loaded_students:
+    print(f"Name: {student['name']} | Branch: {student['branch']} | Marks: {student['marks']}")
+
+if loaded_students:
+    top_students = max(loaded_students, key=lambda s: s["marks"])
+    print("==== TOP STUDENTS ====")
+    print(f"{top_students['name']} - {top_students['marks']}")
+
+

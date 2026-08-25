@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Shravya",
+        "branch": "CSE",
+        "marks": 89
+    },
+    {
+        "name": "Kavya",
+        "branch": "ISE",
+        "marks": 78
+    },
+    {
+        "name": "Ramya",
+        "branch": "CSE",
+        "marks": 90
+    }
+]
