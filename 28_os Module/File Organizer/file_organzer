@@ -1,0 +1,96 @@
+import os
+def print_menu():
+    print("=" * 40)
+    print("FILE ORGANIZER")
+    print("=" * 40)
+    print("1. Show Files")
+    print("2. Create Category Folders")
+    print("3. Organize Files")
+    print("4. Exit")
+
+FILE_CATEGORIES = {
+    "Images" : [".jpg",".jdeg", ".png", ".gif", ".svg"],
+    "Documents" : [".pdf", ".docx", ".txt", ".xlsx", ".pptx"],
+    "Programming" : [".py", ".c", ".cpp",".java", ".js"],
+    "Audio" : [".mp3", ".wav", ".flac"],
+    "Videos" : [".mp4", ".mkv", ".mov"],
+    "Archieves" : [".zip", ".tar", ".gz", ".rar"] 
+}
+TEST_FOLDER = "Test_Files"
+def show_files():
+    try:
+        files = os.listdir(TEST_FOLDER)
+        print(f"--- Files in '{TEST_FOLDER}' ---")
+        for filename in files:
+            item_path = os.path.join(TEST_FOLDER, filename)
+            if os.path.isfile(item_path):
+                _, ext = os.path.splitext(filename)
+                print(f"[FILE] {filename} (Extension: {ext if ext else 'None'})")
+            else:
+                print(f"[DIR] {filename}/")
+    except FileNotFoundError:
+        print(f"Error: The path '{TEST_FOLDER}' was not found.")
+    except Exception as e:
+        print(f"An error occured: {e}")
+
+
+def get_category(filename):
+    filename = filename.lower()
+    _, ext = os.path.splitext(filename)
+    for category, extensions in FILE_CATEGORIES.items():
+        if ext.lower() in extensions:
+            return category
+    return "Others"
+print(get_category("photo.jpg"))
+print(get_category("resume.pdf"))
+print(get_category("program.py"))
+print(get_category("song.mp3"))
+
+def create_category_folders():
+    try:
+        for category in FILE_CATEGORIES:
+            folder_path = os.path.join(TEST_FOLDER, category)
+            if not os.path.exists(folder_path):
+                os.makedirs(folder_path)
+                print(f"Created directory: {category}/")
+            else:
+                print(f"Directory already exists: {category}/")
+    except Exception as e:
+        print(f"Error creating category folders: {e}")
+
+
+
+def organize_files():
+    try:
+        files = os.listdir(TEST_FOLDER)
+        for filename in files:
+            item_path = os.path.join(TEST_FOLDER, filename)
+            if not os.path.isfile(item_path):
+                continue
+            category = get_category(filename)
+            destination_folder = os.path.join(TEST_FOLDER, category)
+            destination_path = os.path.join(destination_folder, filename)
+            os.rename(item_path, destination_path)
+            print(f"Moved {filename} - {category}/")
+    except Exception as e:
+        print(f"Failed to move files: {e}")
+
+
+def main():
+    while True:
+        print_menu()
+        choice = input("Enter your choice (1-4): ")
+        if choice == "1":
+            show_files()
+        elif choice == "2":
+            create_category_folders()
+        elif choice == "3":
+            organize_files()
+        elif choice == "4":
+            print("Exiting the program. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please select a valid option (1-4).")
+
+if __name__ == "__main__":
+    main()
