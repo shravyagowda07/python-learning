@@ -1,0 +1,38 @@
+
+import random
+
+def main():
+    print("===== RANDOM STUDENT PICKER =====\n")
+    
+    # 1. Ask for the number of students
+    num_students = int(input("How many students: "))
+    
+    # 2. Collect student names in a list
+    students = []
+    for i in range(1, num_students + 1):
+        name = input(f"Enter student {i}: ")
+        students.append(name)
+    
+    print("\n===== RESULTS =====\n")
+    
+    # 3. Randomly select one student as 'Student of the Day'
+    student_of_the_day = random.choice(students)
+    print(f"Student of the Day: {student_of_the_day}\n")
+    
+    # 4. Randomly select 2 students for 'Special Team'
+    special_team = random.sample(students, 2)
+    print("Special Team:")
+    for member in special_team:
+        print(f" - {member}")
+    print()
+    
+    # 5. Shuffle all students and display the new order
+    shuffled_students = students.copy()
+    random.shuffle(shuffled_students)
+    
+    print("Shuffled Order:")
+    for index, student in enumerate(shuffled_students, 1):
+        print(f"{index}. {student}")
+
+if __name__ == "__main__":
+    main()
