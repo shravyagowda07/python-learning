@@ -1,0 +1,63 @@
+import requests
+
+
+def analyze_github_user(username):
+    # Fetch user's public repositories via GitHub API
+    url = f"https://api.github.com/users/{username}/repos"
+    response = requests.get(url)
+
+    if response.status_code != 200:
+        print(
+            f"Error: Unable to fetch data for user '{username}' (Status code: {response.status_code})"
+        )
+        return
+
+    repos = response.json()
+
+    if not repos:
+        print("No public repositories found for this user.")
+        return
+
+    print("\n===== REPOSITORIES =====\n")
+
+    total_stars = 0
+    most_starred_repo = ""
+    highest_stars = -1
+
+    # Print listed repositories
+    for i, repo in enumerate(repos, 1):
+        name = repo.get("name", "N/A")
+        stars = repo.get("stargazers_count", 0)
+        forks = repo.get("forks_count", 0)
+        language = repo.get("language", "Not specified")
+
+        print(f"{i}. {name}")
+        print(f"   ⭐ Stars: {stars}")
+        print(f"   🍴 Forks: {forks}")
+        print(f"   Language: {language}\n")
+
+    # Perform analysis across all repositories
+    total_repos = len(repos)
+    for repo in repos:
+        stars = repo.get("stargazers_count", 0)
+        total_stars += stars
+        if stars > highest_stars:
+            highest_stars = stars
+            most_starred_repo = repo.get("name", "N/A")
+
+    print("===== ANALYSIS =====\n")
+    print(f"Total repositories: {total_repos}")
+    print(f"Total stars: {total_stars}")
+    print(f"Most starred repository: {most_starred_repo}")
+    print(f"Highest stars: {highest_stars}")
+
+
+def main():
+    print("===== GITHUB REPOSITORY ANALYZER =====\n")
+    username = input("Enter GitHub username: ").strip()
+    if username:
+        analyze_github_user(username)
+
+
+if __name__ == "__main__":
+    main()
