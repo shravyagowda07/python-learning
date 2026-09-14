@@ -1,0 +1,238 @@
+import sqlite3
+from datetime import datetime
+
+
+class LearningAgent:
+
+    def __init__(self, db_name="learning_agent.db"):
+        self.db_name = db_name
+        self.curriculum = ["Python Basics", "Variables", "Lists", "Functions"]
+        self.weak_topics = ["Functions"]
+        self.__init__db()
+
+    def __init__db(self):
+        """Creates tables for conversations and topic performance tracking."""
+        with sqlite3.connect(self.db_name) as conn:
+            cursor = conn.cursor()
+
+            # Existing table
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS conversations (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    timestamp TEXT,
+                    user_input TEXT,
+                    completed_topic TEXT
+                )
+            """)
+
+            # NEW: Performance tracking table
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS performance (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    timestamp TEXT,
+                    topic TEXT,
+                    score REAL
+                )
+            """)
+            conn.commit()
+
+    # --- EXISTING METHODS ---
+
+    def process_input(self, user_input: str):
+        detected_topic = None
+        for topic in self.curriculum:
+            if topic.lower() in user_input.lower():
+                detected_topic = topic
+                break
+
+        with sqlite3.connect(self.db_name) as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                """
+                INSERT INTO conversations (timestamp, user_input, completed_topic)
+                VALUES (?, ?, ?)
+            """,
+                (
+                    datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                    user_input,
+                    detected_topic,
+                ),
+            )
+            conn.commit()
+
+        completed_topics = self._get_completed_topics()
+
+        print(f"\nYou: {user_input}\n")
+        print("Agent:")
+        print(
+            "✓ Progress saved\n" if detected_topic else "✓ Input processed\n"
+        )
+
+        print("Your history:")
+        for topic in completed_topics:
+            print(f"{topic} ✓")
+
+        # Dynamically uses updated analytics methods
+        weak_area = self.analyze_weak_topics()
+        print(f"\nWeak area detected: {weak_area}\n")
+
+        print("Recommended tomorrow:")
+        self.recommend_next_task()
+
+        difficulty = (
+            "Beginner" if len(completed_topics) <= 3 else "Intermediate"
+        )
+        print(f"\nDifficulty: {difficulty}\n" + "-" * 30)
+
+    def view_memory(self):
+        with sqlite3.connect(self.db_name) as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                "SELECT id, timestamp, user_input, completed_topic FROM conversations"
+            )
+            rows = cursor.fetchall()
+
+        print("\n=== STORED MEMORY LOGS ===")
+        if not rows:
+            print("No memory stored yet.")
+            return
+
+        for row in rows:
+            print(
+                f"[{row[0]}] {row[1]} | Input: '{row[2]}' | Identified Topic: {row[3]}"
+            )
+        print("===========================\n")
+
+    def clear_memory(self):
+        with sqlite3.connect(self.db_name) as conn:
+            cursor = conn.cursor()
+            cursor.execute("DELETE FROM conversations")
+            cursor.execute("DELETE FROM performance")
+            conn.commit()
+        print("\n✓ All memory and performance logs cleared.\n")
+
+    def _get_completed_topics(self):
+        with sqlite3.connect(self.db_name) as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                "SELECT DISTINCT completed_topic FROM conversations WHERE completed_topic IS NOT NULL"
+            )
+            return [row[0] for row in cursor.fetchall()]
+
+    # --- NEW METHODS ADDED BELOW ---
+
+    def save_performance(self, topic: str, score: float):
+        """Saves quiz/practice test scores for a given topic to the database."""
+        with sqlite3.connect(self.db_name) as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                """
+                INSERT INTO performance (timestamp, topic, score)
+                VALUES (?, ?, ?)
+            """,
+                (
+                    datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                    topic,
+                    score,
+                ),
+            )
+            conn.commit()
+        print(f"\n✓ Score of {score}% saved for {topic}.")
+
+    def view_performance(self):
+        """Logs recorded quiz performance and overall average score."""
+        with sqlite3.connect(self.db_name) as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                "SELECT timestamp, topic, score FROM performance ORDER BY timestamp DESC"
+            )
+            rows = cursor.fetchall()
+
+        print("\n=== PERFORMANCE HISTORY ===")
+        if not rows:
+            print("No scores logged yet.")
+            return
+
+        for row in rows:
+            print(f"[{row[0]}] Topic: {row[1]} | Score: {row[2]}%")
+
+        avg = self.calculate_average()
+        print(f"\nOverall Average Score: {avg:.2f}%")
+        print("===========================\n")
+
+    def calculate_average(self, topic: str = None) -> float:
+        """Calculates mean score globally or filtered by topic."""
+        with sqlite3.connect(self.db_name) as conn:
+            cursor = conn.cursor()
+            if topic:
+                cursor.execute(
+                    "SELECT AVG(score) FROM performance WHERE topic = ?",
+                    (topic,),
+                )
+            else:
+                cursor.execute("SELECT AVG(score) FROM performance")
+            result = cursor.fetchone()[0]
+
+        return result if result is not None else 0.0
+
+    def analyze_weak_topics(self) -> str:
+        """Identifies topics with lowest performance averages (< 70%)."""
+        with sqlite3.connect(self.db_name) as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+                SELECT topic, AVG(score) as avg_score 
+                FROM performance 
+                GROUP BY topic 
+                ORDER BY avg_score ASC 
+                LIMIT 1
+            """)
+            row = cursor.fetchone()
+
+        if row and row[1] < 70.0:
+            return f"{row[0]} (Avg: {row[1]:.1f}%)"
+
+        # Fallback to uncompleted topics if scores look good
+        completed = self._get_completed_topics()
+        uncompleted = [t for t in self.curriculum if t not in completed]
+        return uncompleted[0] if uncompleted else "None"
+
+    def recommend_next_task(self):
+        """Generates dynamic study recommendations based on weak points."""
+        weak = self.analyze_weak_topics()
+        if "None" in weak:
+            print(" → Review advanced concepts and start a major project")
+        else:
+            print(f" → Review target area: {weak}")
+            print(" → Complete 3 practice problems on this topic")
+
+
+# CLI Execution Loop
+if __name__ == "__main__":
+    agent = LearningAgent()
+
+    # Pre-populate initial progress if database is empty
+    if not agent._get_completed_topics():
+        agent.process_input("Completed Python Basics")
+        agent.process_input("Completed Variables")
+
+    while True:
+        print(
+            "\nCommands: 'chat', 'score', 'perf', 'view', 'clear', 'exit'"
+        )
+        cmd = input("Action: ").strip().lower()
+
+        if cmd == "exit":
+            break
+        elif cmd == "chat":
+            msg = input("Enter prompt: ")
+            agent.process_input(msg)
+        elif cmd == "score":
+            top = input("Enter topic: ")
+            sc = float(input("Enter score (%): "))
+            agent.save_performance(top, sc)
+        elif cmd == "perf":
+            agent.view_performance()
+        elif cmd == "view":
+            agent.view_memory()
+        elif cmd == "clear":
+            agent.clear_memory()
