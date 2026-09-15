@@ -1,0 +1,27 @@
+import sqlite3
+
+connection = sqlite3.connect("student.db")
+cursor = connection.cursor()
+
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS students (
+        id INTEGER PRIMARY KEY,
+        name TEXT,
+        branch TEXT,
+        marks INTEGER
+    )
+""")
+
+cursor.execute(
+    "INSERT INTO students (name, branch, marks) VALUES (?, ?, ?)",
+    ("Shravya", "CSE", 90)
+)
+
+connection.commit()
+
+cursor.execute("SELECT * FROM students")
+
+for student in cursor.fetchall():
+    print(student)
+
+connection.close()
