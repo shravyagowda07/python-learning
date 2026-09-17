@@ -528,6 +528,47 @@ Topics covered:
 •⁠  ⁠Dictionary ⁠ .get() ⁠
 •⁠  ⁠Error Handling
 
+## GitHub Research Module
+
+In this module, I learned how to use the GitHub REST API with Python's
+⁠ requests ⁠ module.
+
+### Topics Learned
+
+•⁠  ⁠Sending GET requests to GitHub API
+•⁠  ⁠Searching GitHub repositories
+•⁠  ⁠Using query parameters
+•⁠  ⁠Using API endpoints
+•⁠  ⁠Reading JSON responses
+•⁠  ⁠Displaying repository information
+•⁠  ⁠Handling API status codes
+•⁠  ⁠Handling request exceptions
+•⁠  ⁠Searching repositories using keywords
+•⁠  ⁠Understanding repository details
+
+### Practice Projects
+
+•⁠  ⁠GitHub User Finder
+•⁠  ⁠GitHub Repository Finder
+•⁠  ⁠GitHub Repository Search
+
+### Technologies Used
+
+•⁠  ⁠Python
+•⁠  ⁠Requests
+•⁠  ⁠GitHub REST API
+•⁠  ⁠JSON
+
+### Example API Features
+
+•⁠  ⁠Search GitHub users
+•⁠  ⁠Search GitHub repositories
+•⁠  ⁠Display repository name
+•⁠  ⁠Display repository owner
+•⁠  ⁠Display repository URL
+•⁠  ⁠Display repository stars
+•⁠  ⁠Display repository language
+
 ### Practical Project
 
 •⁠  ⁠GitHub User Finder
@@ -541,6 +582,42 @@ The program:
 •⁠  ⁠Displays followers
 •⁠  ⁠Displays following
 •⁠  ⁠Handles invalid usernames
+
+  ---
+
+# SQLite3 Basics
+
+## Topics Learned
+
+•⁠  ⁠Connecting to a SQLite3 database
+•⁠  ⁠Creating a table
+•⁠  ⁠Inserting student records
+•⁠  ⁠Selecting records
+•⁠  ⁠Fetching records using ⁠ fetchall() ⁠
+•⁠  ⁠Updating and deleting records
+•⁠  ⁠Committing changes
+•⁠  ⁠Closing the database connection
+
+## Practice Program
+
+Created a simple student database using Python and SQLite3.
+
+The program stores:
+
+•⁠  ⁠Student ID
+•⁠  ⁠Student name
+•⁠  ⁠Branch
+•⁠  ⁠Marks
+
+## Technologies Used
+
+•⁠  ⁠Python
+•⁠  ⁠SQLite3
+
+## How to Run
+
+```bash
+python3 sqlite_practice.py
 
 ---
 
